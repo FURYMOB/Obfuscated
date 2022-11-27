@@ -118,7 +118,7 @@ PlayerSectionBehaviour:addToggle("Invisible Fling", nil, function()
     loadstring(game:HttpGet("https://pastebin.com/raw/eetwJjwC"))()
 end)
 
-PlayerSectionBehaviour:addButton("Instalt Promte", function()
+PlayerSectionBehaviour:addButton("Instant Promte", function()
     game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
         fireproximityprompt(prompt)
     end)
