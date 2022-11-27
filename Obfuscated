@@ -118,6 +118,14 @@ PlayerSectionBehaviour:addToggle("Invisible Fling", nil, function()
     loadstring(game:HttpGet("https://pastebin.com/raw/eetwJjwC"))()
 end)
 
+PlayerSectionBehaviour:addButton("Instalt Promte", function()
+    game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
+        fireproximityprompt(prompt)
+    end)
+end)
+
+
+
 -- 💨 Tween 💨 --
 AutoSectionTween:addTextbox("TweenPath", "", function(TweenPath, focusLost)
     _G.TweenPath = TweenPath
