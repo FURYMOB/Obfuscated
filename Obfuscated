@@ -1,3 +1,6 @@
+local DiscordLink = "https://discord.com/invite/GgtEkU77WD"
+local TikTokLink = "https://www.tiktok.com/@spyhub.script"
+
 if _G.SpyHubLaunched  == true then
     game:GetService("CoreGui").SpyHub:Destroy()
 end
@@ -683,7 +686,13 @@ end
 end
 
 InfoSpyHub:addButton("SpyHub Discord", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
+setclipboard(tostring(DiscordLink))
+venyx:Notify("SpyHub Discord", "Copyed to clipboard")
+end)
+
+InfoSpyHub:addButton("SpyHub TikTok", function()
+setclipboard(tostring(TikTokLink))
+venyx:Notify("SpyHub TikTok", "Copyed to clipboard")
 end)
 
 -- 🥘 Translate 🥘 --
