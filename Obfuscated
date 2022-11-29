@@ -15,6 +15,7 @@ end)
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
 local venyx = library.new("SpyHub", 10292846770)
 wait(0.1)
+--loadstring(game:HttpGet("https://pastebin.com/raw/4XKEDbAs"))()
 
 -- 🔲 ThemesLoader 🔲 --
 local themes = {
@@ -84,7 +85,7 @@ DestroyGui:addButton("🗑️Destroy🗑️", function()
     local IntValue = Instance.new("IntValue")
 end)
 
-DestroyGui:addButton("️Rejoin", function()
+DestroyGui:addButton("🔄Rejoin🔄", function()
     local tpservice= game:GetService("TeleportService")
     local plr = game.Players.LocalPlayer
 
@@ -1374,6 +1375,41 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end
 
 end)
+end
+
+-- 📇 LuckyBlock 📇 --
+if game.PlaceId == 662417684 then
+    local LuckyBlockGet = CurentGame:addSection("LuckyBlock Open")
+    LuckyBlockGet:addDropdown("Select Type", {"LuckyBlock", "SuperBlock", "DiamondBlock", "RainbowBlock", "GalaxyBlock"}, function(LuckyBlockGet)
+        _G.LuckyBlockGet = LuckyBlockGet
+    end)
+    LuckyBlockGet:addSlider("Select How Many", 1, 1, 500, function(HowManyLucky)
+        _G.HowManyLucky = HowManyLucky
+    end)
+    LuckyBlockGet:addButton("Execute", function()
+        for count = 1, _G.HowManyLucky do
+            if _G.LuckyBlockGet == "LuckyBlock" then
+                game:GetService("ReplicatedStorage").SpawnLuckyBlock:FireServer()
+            elseif _G.LuckyBlockGet == "SuperBlock" then
+                game:GetService("ReplicatedStorage").SpawnSuperBlock:FireServer()
+            elseif _G.LuckyBlockGet == "DiamondBlock" then
+                game:GetService("ReplicatedStorage").SpawnDiamondBlock:FireServer()
+            elseif _G.LuckyBlockGet == "RainbowBlock" then
+                game:GetService("ReplicatedStorage").SpawnRainbowBlock:FireServer()
+            elseif _G.LuckyBlockGet == "GalaxyBlock" then
+                game:GetService("ReplicatedStorage").SpawnGalaxyBlock:FireServer()
+            end
+        end
+    end)
+    LuckyBlockGet:addButton("Get All", function()
+        for count = 1, 250 do
+            game:GetService("ReplicatedStorage").SpawnLuckyBlock:FireServer()
+            game:GetService("ReplicatedStorage").SpawnSuperBlock:FireServer()
+            game:GetService("ReplicatedStorage").SpawnDiamondBlock:FireServer()
+            game:GetService("ReplicatedStorage").SpawnRainbowBlock:FireServer()
+            game:GetService("ReplicatedStorage").SpawnGalaxyBlock:FireServer()
+        end
+    end)
 end
 
 venyx:SelectPage(venyx.pages[1], true)
