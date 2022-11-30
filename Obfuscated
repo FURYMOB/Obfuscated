@@ -63,8 +63,9 @@ local CurentGame = venyx:addPage(GameName, 5012544693)
 -- 🕳 GuiPage 🕳 --
 local theme = venyx:addPage("GuiSetting", 5012544693)
 local colors = theme:addSection("SpyHub Thèmes")
-local InfoSpyHub = theme:addSection("SpyHub Info")
 local DestroyGui = theme:addSection("SpyHub Gui")
+local InfoSpyHub = theme:addSection("SpyHub Info")
+local CompatibleSpyHub = theme:addSection("Compatible Game")
 
 -- 🔳 GuiSetting 🔳 --
 for theme, color in pairs(themes) do
@@ -161,6 +162,9 @@ AutoSectionTween:addButton("PlayTween", function()
 end)
 
 -- 🏀 BeABall 🏀 --
+CompatibleSpyHub:addButton("BeABall", function()
+    game:GetService('TeleportService'):Teleport(10024974394)
+end)
 if game.PlaceId == 10024974394 then
     local BeABallCoin = CurentGame:addSection("CollectCoin")
     local BeABallMarble = CurentGame:addSection("Marble")
@@ -225,7 +229,11 @@ if game.PlaceId == 10024974394 then
     end)
 end
 
-if game.PlaceId == 537413528 then -- 💦 BuildABoat 💦 --
+-- 💦 BuildABoat 💦 --
+CompatibleSpyHub:addButton("BuildABoat", function()
+    game:GetService('TeleportService'):Teleport(537413528)
+end)
+if game.PlaceId == 537413528 then
     local BuildABoatEvent = CurentGame:addSection("Event")
     local BuildABoatEventPlace = CurentGame:addSection("Place")
     local BuildABoatTools = CurentGame:addSection("Tools")
@@ -581,6 +589,9 @@ PlayerSectionInventoryToolsBreak:addToggle("DupeTools", false, function(GameCras
 end)
 
 -- 🌳 NaturalDisaster 🌳 --
+CompatibleSpyHub:addButton("NaturalDisaster", function()
+    game:GetService('TeleportService'):Teleport(189707)
+end)
 if game.PlaceId == 189707 then
     local NaturalDisasterMain = CurentGame:addSection("Main")
     NaturalDisasterMain:addToggle("NoFallDamage🛠", false, function(NoFallDamageNatural)
@@ -668,8 +679,10 @@ end)
 
 
 
+CompatibleSpyHub:addButton("Fortnite", function()
+    game:GetService('TeleportService'):Teleport(6381744121)
+end)
 if game.PlaceId == 6381744121 then -- 💦 Fortinatite ⚪ --
-    
 _G.skins = {}
 if game:GetService("ReplicatedStorage").Modules.Skins then
     _G.skins = require(game:GetService("ReplicatedStorage").Modules.Skins)
@@ -1277,6 +1290,9 @@ af = "Afrikaans",
 --]]
 end)
 
+CompatibleSpyHub:addButton("Fly Race", function()
+    game:GetService('TeleportService'):Teleport(6679968919)
+end)
 if game.PlaceId == 6679968919 then
     local FlyRaceAutoFarm = CurentGame:addSection("AutoFarm")
     
@@ -1378,6 +1394,9 @@ end)
 end
 
 -- 📇 LuckyBlock 📇 --
+CompatibleSpyHub:addButton("LuckyBlock", function()
+    game:GetService('TeleportService'):Teleport(662417684)
+end)
 if game.PlaceId == 662417684 then
     local LuckyBlockGet = CurentGame:addSection("LuckyBlock Open")
     LuckyBlockGet:addDropdown("Select Type", {"LuckyBlock", "SuperBlock", "DiamondBlock", "RainbowBlock", "GalaxyBlock"}, function(LuckyBlockGet)
