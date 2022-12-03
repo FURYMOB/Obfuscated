@@ -1,13 +1,6 @@
 local DiscordLink = "https://discord.com/invite/GgtEkU77WD"
 local TikTokLink = "https://www.tiktok.com/@spyhub.rbx"
 
-if syn then
-    if not isfolder("SpyHub") then    -- Checks if the folder already exists
-        makefolder("SpyHub")   -- If the folder doesn't exist, make a new one
-        writefile("SpyHub/settings.lua", "")
-    end
-end
-
 if _G.SpyHubLaunched  == true then
     game:GetService("CoreGui").SpyHub:Destroy()
 end
@@ -42,6 +35,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
 AutoCoinCollectBeABall = false
 _G.BeABallTweenTime = 0.75
 local objectValue = Instance.new("ObjectValue")
+local MP = game:GetService('MarketplaceService')
 
 -- 💌 Page 💌 --
 wait(0.1)
@@ -65,7 +59,7 @@ local AvatarSectionTools = AvatarPage:addSection("Skin")
 local AutoPage = venyx:addPage("Auto", 5012544693)
 local AutoSectionTween = AutoPage:addSection("Auto🛠")
 
-local CurentGame = venyx:addPage(GameName, 5012544693)
+local CurentGame = venyx:addPage(GameName, MP:GetProductInfo(537413528).IconImageAssetId)
 
 -- 🕳 GuiPage 🕳 --
 local theme = venyx:addPage("GuiSetting", 5012544693)
