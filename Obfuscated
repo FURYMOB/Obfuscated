@@ -1,6 +1,13 @@
 local DiscordLink = "https://discord.com/invite/GgtEkU77WD"
 local TikTokLink = "https://www.tiktok.com/@spyhub.rbx"
 
+if syn then
+    if not isfolder("SpyHub") then    -- Checks if the folder already exists
+        makefolder("SpyHub")   -- If the folder doesn't exist, make a new one
+        writefile("SpyHub/settings.lua", "")
+    end
+end
+
 if _G.SpyHubLaunched  == true then
     game:GetService("CoreGui").SpyHub:Destroy()
 end
