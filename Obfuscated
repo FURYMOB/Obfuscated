@@ -162,7 +162,7 @@ AutoSectionTween:addButton("PlayTween", function()
 end)
 
 -- 🏀 BeABall 🏀 --
-CompatibleSpyHub:addButton("BeABall", function()
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(10024974394).Name, function()
     game:GetService('TeleportService'):Teleport(10024974394)
 end)
 if game.PlaceId == 10024974394 then
@@ -230,13 +230,13 @@ if game.PlaceId == 10024974394 then
 end
 
 -- 💦 BuildABoat 💦 --
-CompatibleSpyHub:addButton("BuildABoat", function()
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(537413528).Name, function()
     game:GetService('TeleportService'):Teleport(537413528)
 end)
 if game.PlaceId == 537413528 then
     local BuildABoatEvent = CurentGame:addSection("Event")
     local BuildABoatEventPlace = CurentGame:addSection("Place")
-    local BuildABoatTools = CurentGame:addSection("Tools")
+    local BuildABoatTools = CurentGame:addSection("Other")
     BuildABoatEvent:addButton("FabbyQuest", function()
         workspace.QuestMakerEvent:FireServer(100)
     end)
@@ -264,6 +264,16 @@ if game.PlaceId == 537413528 then
                 v.Parent = game.Players.LocalPlayer.Backpack
             end
         end
+    end)
+    BuildABoatTools:addToggle("WaterGod", false, function(State)
+        getgenv().Water = State 
+        game:GetService('RunService').Stepped:connect(function()
+            pcall(function()
+                if getgenv().Water and game.Players.LocalPlayer.Character:FindFirstChild("WaterDetector")  then
+                    game.Players.LocalPlayer.Character.WaterDetector:remove()
+                end
+            end)
+        end)
     end)
 end
 
@@ -589,7 +599,7 @@ PlayerSectionInventoryToolsBreak:addToggle("DupeTools", false, function(GameCras
 end)
 
 -- 🌳 NaturalDisaster 🌳 --
-CompatibleSpyHub:addButton("NaturalDisaster", function()
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(189707).Name, function()
     game:GetService('TeleportService'):Teleport(189707)
 end)
 if game.PlaceId == 189707 then
@@ -677,12 +687,11 @@ end)
 
 
 
-
-
-CompatibleSpyHub:addButton("Fortnite", function()
+-- 🔫 Fortinatite 🔫 --
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(6381744121).Name, function()
     game:GetService('TeleportService'):Teleport(6381744121)
 end)
-if game.PlaceId == 6381744121 then -- 💦 Fortinatite ⚪ --
+if game.PlaceId == 6381744121 then
 _G.skins = {}
 if game:GetService("ReplicatedStorage").Modules.Skins then
     _G.skins = require(game:GetService("ReplicatedStorage").Modules.Skins)
@@ -732,7 +741,7 @@ TrSectionTranslation:addDropdown("en", {
 "su", "sw", "sv", "tg", "ta",
 "te", "th", "tr", "uk", "ur",
 "uz", "vi", "cy", "xh", "yi",
-"yo", "zu"
+"yo", "zu", "zh-cn", "zh-tw"
 }, function(LanguageTrand)
 _G.LanguageTrand = LanguageTrand
 end)
@@ -1290,7 +1299,8 @@ af = "Afrikaans",
 --]]
 end)
 
-CompatibleSpyHub:addButton("Fly Race", function()
+-- 🪁 FlyRace 🪁 --
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(6679968919).Name, function()
     game:GetService('TeleportService'):Teleport(6679968919)
 end)
 if game.PlaceId == 6679968919 then
@@ -1394,7 +1404,7 @@ end)
 end
 
 -- 📇 LuckyBlock 📇 --
-CompatibleSpyHub:addButton("LuckyBlock", function()
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(662417684).Name, function()
     game:GetService('TeleportService'):Teleport(662417684)
 end)
 if game.PlaceId == 662417684 then
@@ -1431,8 +1441,8 @@ if game.PlaceId == 662417684 then
     end)
 end
 
--- GorillaTagProfessional --
-CompatibleSpyHub:addButton("GorillaTagProfessional", function()
+-- GorillaTagProfessional 🐵 --
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(8690998110).Name, function()
     game:GetService('TeleportService'):Teleport(8690998110)
 end)
 if game.PlaceId == 8690998110 or game.PlaceId == 899965322 then
@@ -1467,11 +1477,11 @@ if game.PlaceId == 8690998110 or game.PlaceId == 899965322 then
     end)
 end
 
--- Doors --
-CompatibleSpyHub:addButton("GorillaTagProfessional", function()
+-- 👁️ Doors 👁️ --
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(6516141723).Name, function()
     game:GetService('TeleportService'):Teleport(6516141723)
 end)
-if game.PlaceId == 6839171747 then
+if game.PlaceId == 6839171747 or game.PlaceId == 6516141723 then
     local LegacyDoorsEnt = CurentGame:addSection("Legacy Entites")
     local DoorsEnt = CurentGame:addSection("Entities")
     local DoorsOther = CurentGame:addSection("Other")
