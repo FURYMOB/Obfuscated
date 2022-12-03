@@ -1435,7 +1435,7 @@ end
 CompatibleSpyHub:addButton("GorillaTagProfessional", function()
     game:GetService('TeleportService'):Teleport(8690998110)
 end)
-if game.PlaceId == 8690998110 then
+if game.PlaceId == 8690998110 or 899965322 then
     local GorillaTag = CurentGame:addSection("Skin")
     GorillaTag:addToggle("RambowGorilla", false, function(RambowGorilla)
         _G.RambowGorilla = RambowGorilla
