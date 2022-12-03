@@ -59,7 +59,9 @@ local AvatarSectionTools = AvatarPage:addSection("Skin")
 local AutoPage = venyx:addPage("Auto", 5012544693)
 local AutoSectionTween = AutoPage:addSection("Auto🛠")
 
-local CurentGame = venyx:addPage(GameName, MP:GetProductInfo(537413528).IconImageAssetId)
+local CurentGame = venyx:addPage(GameName, MP:GetProductInfo(game.PlaceId).IconImageAssetId)
+local UICorner = Instance.new("UICorner")
+UICorner.Parent = game:GetService("CoreGui").SpyHub.Main.Pages["Pages_Container"][GameName].Icon
 
 -- 🕳 GuiPage 🕳 --
 local theme = venyx:addPage("GuiSetting", 5012544693)
