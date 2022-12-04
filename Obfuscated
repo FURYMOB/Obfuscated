@@ -1,6 +1,14 @@
 local DiscordLink = "https://discord.com/invite/GgtEkU77WD"
 local TikTokLink = "https://www.tiktok.com/@spyhub.rbx"
 
+local IntValue = Instance.new("IntValue")
+-- PlayerInGame
+local getallplayers = ""
+
+for i, v in pairs(game.Players:GetPlayers()) do
+    getallplayers = getallplayers..v.Name..", "
+end
+
 if _G.SpyHubLaunched  == true then
     game:GetService("CoreGui").SpyHub:Destroy()
 end
@@ -55,6 +63,9 @@ local VisualSectionHitBox = VisualPage:addSection("HitBox")
 
 local AvatarPage = venyx:addPage("Avatar", 5012544693)
 local AvatarSectionTools = AvatarPage:addSection("Skin")
+
+--local TeleportationPage = venyx:addPage("Teleportation", 5012544693)
+--local TeleportationSectionPlayer = TeleportationPage:addSection("Player")
 
 local AutoPage = venyx:addPage("Auto", 5012544693)
 local AutoSectionTween = AutoPage:addSection("Auto🛠")
@@ -1411,7 +1422,7 @@ CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(
     game:GetService('TeleportService'):Teleport(662417684)
 end)
 if game.PlaceId == 662417684 then
-    local LuckyBlockGet = CurentGame:addSection("LuckyBlock Open")
+    local LuckyBlockGet = CurentGame:addSection("LuckyBlock")
     LuckyBlockGet:addDropdown("Select Type", {"LuckyBlock", "SuperBlock", "DiamondBlock", "RainbowBlock", "GalaxyBlock"}, function(LuckyBlockGet)
         _G.LuckyBlockGet = LuckyBlockGet
     end)
@@ -1813,6 +1824,27 @@ local seconds = 1000000
 v1.tryp(workspace.CurrentRooms[game.Players.LocalPlayer:GetAttribute("CurrentRoom")], seconds)
 end)
 
+end
+
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(6875747014).Name, function()
+    game:GetService('TeleportService'):Teleport(6875747014)
+end)
+if game.PlaceId == 6875747014 then
+    venyx:Notify(game:GetService("MarketplaceService"):GetProductInfo(6875747014).Name, "You need to be in game")
+end
+if game.PlaceId == 6875760739 then
+    _G.HowManyDice = 1
+    local RonopolyDice = CurentGame:addSection("Dice")
+    RonopolyDice:addSlider("Select How Many", 1, 1, 500, function(HowManyDice)
+        _G.HowManyDice = HowManyDice
+    end)
+    RonopolyDice:addButton("Spawn Dice", function()
+        for count = 1, _G.HowManyDice do
+            local args = {[1] = nil, [2] = 0}
+        
+            game:GetService("ReplicatedStorage").functionsAndEvents.rollDice:InvokeServer(unpack(args))
+        end
+    end)
 end
 
 venyx:SelectPage(venyx.pages[1], true)
