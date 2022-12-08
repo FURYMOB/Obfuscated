@@ -137,6 +137,10 @@ PlayerSectionBehaviour:addToggle("Invisible Fling", nil, function()
     loadstring(game:HttpGet("https://pastebin.com/raw/eetwJjwC"))()
 end)
 
+PlayerSectionBehaviour:addToggle("Invisible", nil, function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/Rvmk7Lyf"))()
+end)
+
 PlayerSectionBehaviour:addButton("Instant Promte", function()
     game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
         fireproximityprompt(prompt)
@@ -174,6 +178,51 @@ AutoSectionTween:addButton("PlayTween", function()
         wait()
     end
 end)
+-- 🔊 Voice Chat 🔊 --
+local VoiceChatService = game:GetService("VoiceChatService")
+local PLAYER = game.Players.LocalPlayer
+if VoiceChatService:IsVoiceEnabledForUserIdAsync(PLAYER.UserId) then
+
+Source = game:GetService("CoreGui").BubbleChat
+
+for i,v in pairs(Source:GetChildren()) do
+    if (v:IsA("BillboardGui")) then
+        local Source = v
+        for i,v in pairs(Source:GetChildren()) do
+            if (v:IsA("Frame")) then
+                local Source = v
+                for i,v in pairs(Source:GetChildren()) do
+                    if v.name == "RoundedFrame" then
+                        local Source = v
+                        for i,v in pairs(Source:GetChildren()) do
+                            if v.name == "Contents" then
+                                local Source = v
+                                for i,v in pairs(Source:GetChildren()) do
+                                    if v.name == "Insert" then
+                                        BubbleChatPath = v
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+    local RBXVoiceChat = CurentGame:addSection("Voice Chat")
+    local VoiceChat = game:GetService("VoiceChatInternal");
+    vc_enabled = true
+    RBXVoiceChat:addKeybind("Toggle Keybind", nil, function()
+        vc_enabled = (not vc_enabled);
+        VoiceChat:PublishPause(vc_enabled);
+        if vc_enabled == false then 
+            BubbleChatPath.ImageColor3 = Color3.new(255,255,255)
+        elseif vc_enabled == true then
+            BubbleChatPath.ImageColor3 = Color3.new(255,0,0)
+        end
+    end)
+end
 
 -- 🏀 BeABall 🏀 --
 CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(10024974394).Name, function()
@@ -635,7 +684,7 @@ if game.PlaceId == 9984770240 then -- 💦 ObbyBall 💦 --
 end
 
 -- 💡 Skin 💡 --
-AvatarSectionTools:addDropdown("SkinThing", {"SkinTools", "Emote", "HatsPet", "HatsSpin", "BallRoll", "Walkable Hat", "Universal Hat(R6)"}, function(SelectedSkinChange)
+AvatarSectionTools:addDropdown("SkinThing", {"SkinTools(R15)", "Emote(R15)", "HatsPet(R15)", "HatsSpin(R15)", "BallRoll(R15)", "Walkable Hat(R15)", "Snake(R15)", "Universal Hat(R6)"}, function(SelectedSkinChange)
     _G.SelectedSkinChange = SelectedSkinChange
 end)
 
@@ -644,13 +693,13 @@ end)
 
 AvatarSectionTools:addButton("Execute", function()
 
-if _G.SelectedSkinChange == "SkinTools" then
+if _G.SelectedSkinChange == "SkinTools(R15)" then
     loadstring(game:HttpGet("https://pastebin.com/raw/9A9HVeAB"))()
-elseif _G.SelectedSkinChange == "Emote" then
+elseif _G.SelectedSkinChange == "Emote(R15)" then
     loadstring(game:HttpGet("https://pastebin.com/raw/5WZCeftU"))()
-elseif _G.SelectedSkinChange == "HatsPet" then
+elseif _G.SelectedSkinChange == "HatsPet(R15)" then
     loadstring(game:HttpGet("https://pastebin.com/raw/VD5LSKVn"))()
-elseif _G.SelectedSkinChange == "HatsSpin" then
+elseif _G.SelectedSkinChange == "HatsSpin(R15)" then
     local obese = game:GetService('Players')
     for i,v in pairs(obese.LocalPlayer.Character:GetChildren()) do
         if v.ClassName == "Accessory" then
@@ -671,7 +720,7 @@ elseif _G.SelectedSkinChange == "HatsSpin" then
             end
         end
     end
-elseif _G.SelectedSkinChange == "BallRoll" then
+elseif _G.SelectedSkinChange == "BallRoll(R15)" then
     loadstring(game:HttpGet("https://pastebin.com/raw/TajXJjSx"))()
 elseif _G.SelectedSkinChange == "Walkable Hat" then
     for _, v in pairs(game.Players.LocalPlayer.Character:getChildren()) do
@@ -692,6 +741,8 @@ elseif _G.SelectedSkinChange == "Walkable Hat" then
 end
 elseif _G.SelectedSkinChange == "Universal Hat(R6)" then
     loadstring(game:HttpGet("https://pastebin.com/raw/4B4fktPS", true))()
+elseif _G.SelectedSkinChange == "Snake(R15)" then
+    loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
 end
 end)
 
