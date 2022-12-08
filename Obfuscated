@@ -25,6 +25,12 @@ local venyx = library.new("SpyHub", 10292846770)
 wait(0.1)
 --loadstring(game:HttpGet("https://pastebin.com/raw/4XKEDbAs"))()
 
+for i,v in pairs(game.Players:GetPlayers()) do
+
+print(v.Name, v.UserId)
+
+end
+
 -- 🔲 ThemesLoader 🔲 --
 local themes = {
 Background = Color3.fromRGB(24, 24, 24),
@@ -1895,6 +1901,33 @@ if game.PlaceId == 6875760739 then
         
             game:GetService("ReplicatedStorage").functionsAndEvents.rollDice:InvokeServer(unpack(args))
         end
+    end)
+end
+
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(8054462345).Name, function()
+    game:GetService('TeleportService'):Teleport(8054462345)
+end)
+if game.PlaceId == 9544666096 then
+    local MichaelZombies = CurentGame:addSection("Zombie")
+    MichaelZombies:addButton("TweenZombie", function()
+local TweenTime = 0.25
+local Source = game:GetService("Workspace").Ignore.Zombies
+local TweenService = game:GetService("TweenService")
+        
+for i,v in pairs(Source:GetChildren()) do
+    if (v:IsA("Model")) then
+        Source = v
+        for i,v in pairs(Source:GetChildren()) do
+            if v.name == "HumanoidRootPart" then
+                local CFrameEnd = CFrame.new(v.Position) -- Place your coords in here
+                local Time = TweenTime -- Time in seconds
+                local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
+                tween:Play()
+                tween.Completed:Wait()
+            end
+        end
+    end
+end
     end)
 end
 
