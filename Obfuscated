@@ -143,8 +143,12 @@ PlayerSectionBehaviour:addToggle("Invisible Fling", nil, function()
     loadstring(game:HttpGet("https://pastebin.com/raw/eetwJjwC"))()
 end)
 
-PlayerSectionBehaviour:addToggle("Invisible", nil, function()
+PlayerSectionBehaviour:addButton("Invisible", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/Rvmk7Lyf"))()
+end)
+
+PlayerSectionBehaviour:addButton("VR (X respawn)", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/3SRQiaeu"))()
 end)
 
 PlayerSectionBehaviour:addButton("Instant Promte", function()
