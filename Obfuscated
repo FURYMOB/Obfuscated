@@ -695,7 +695,7 @@ if game.PlaceId == 9984770240 then -- 💦 ObbyBall 💦 --
 end
 
 -- 💡 Skin 💡 --
-AvatarSectionTools:addDropdown("SkinThing", {"GetTall(R15)", "HeadLess(R15)", "SkinTools(R15)", "Emote(R15)", "HatsPet(R15)", "HatsSpin(R15)", "BallRoll(R15)", "Walkable Hat(R15)", "Snake(R15)", "Neko Anims(R15)", "Universal Hat(R6)"}, function(SelectedSkinChange)
+AvatarSectionTools:addDropdown("SkinThing", {"GetTall(R15)", "HeadLess(R15)", "SkinTools(R15)", "Emote(R15)", "HatsPet(R15)", "HatsSpin(R15)", "BallRoll(R15)", "Walkable Hat(R15)", "Snake(R15/R6)", "Neko Anims(R15)", "Universal Hat(R6)"}, function(SelectedSkinChange)
     _G.SelectedSkinChange = SelectedSkinChange
 end)
 
@@ -752,7 +752,7 @@ elseif _G.SelectedSkinChange == "Walkable Hat" then
 end
 elseif _G.SelectedSkinChange == "Universal Hat(R6)" then
     loadstring(game:HttpGet("https://pastebin.com/raw/4B4fktPS", true))()
-elseif _G.SelectedSkinChange == "Snake(R15)" then
+elseif _G.SelectedSkinChange == "Snake(R15/R6)" then
     loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
 elseif _G.SelectedSkinChange == "GetTall(R15)" then
     venyx:Notify("GetTall(R15)", "Scale - Height 105%, Width 100%, Head 100%, Proportions 0% ")
