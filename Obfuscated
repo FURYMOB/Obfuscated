@@ -190,50 +190,50 @@ AutoSectionTween:addButton("PlayTween", function()
     end
 end)
 -- 🔊 Voice Chat 🔊 --
-local VoiceChatService = game:GetService("VoiceChatService")
-local PLAYER = game.Players.LocalPlayer
-if VoiceChatService:IsVoiceEnabledForUserIdAsync(PLAYER.UserId) then
+--local VoiceChatService = game:GetService("VoiceChatService")
+--local PLAYER = game.Players.LocalPlayer
+--if VoiceChatService:IsVoiceEnabledForUserIdAsync(PLAYER.UserId) then
 
-Source = game:GetService("CoreGui").BubbleChat
+--Source = game:GetService("CoreGui").BubbleChat
 
-for i,v in pairs(Source:GetChildren()) do
-    if (v:IsA("BillboardGui")) then
-        local Source = v
-        for i,v in pairs(Source:GetChildren()) do
-            if (v:IsA("Frame")) then
-                local Source = v
-                for i,v in pairs(Source:GetChildren()) do
-                    if v.name == "RoundedFrame" then
-                        local Source = v
-                        for i,v in pairs(Source:GetChildren()) do
-                            if v.name == "Contents" then
-                                local Source = v
-                                for i,v in pairs(Source:GetChildren()) do
-                                    if v.name == "Insert" then
-                                        BubbleChatPath = v
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
-    local RBXVoiceChat = CurentGame:addSection("Voice Chat")
-    local VoiceChat = game:GetService("VoiceChatInternal");
-    vc_enabled = true
-    RBXVoiceChat:addKeybind("Toggle Keybind", nil, function()
-        vc_enabled = (not vc_enabled);
-        VoiceChat:PublishPause(vc_enabled);
-        if vc_enabled == false then 
-            BubbleChatPath.ImageColor3 = Color3.new(255,255,255)
-        elseif vc_enabled == true then
-            BubbleChatPath.ImageColor3 = Color3.new(255,0,0)
-        end
-    end)
-end
+--for i,v in pairs(Source:GetChildren()) do
+--    if (v:IsA("BillboardGui")) then
+--        local Source = v
+--        for i,v in pairs(Source:GetChildren()) do
+--            if (v:IsA("Frame")) then
+--                local Source = v
+--                for i,v in pairs(Source:GetChildren()) do
+--                    if v.name == "RoundedFrame" then
+--                        local Source = v
+--                        for i,v in pairs(Source:GetChildren()) do
+--                            if v.name == "Contents" then
+--                                local Source = v
+--                                for i,v in pairs(Source:GetChildren()) do
+--                                    if v.name == "Insert" then
+--                                        BubbleChatPath = v
+--                                    end
+--                                end
+--                            end
+--                        end
+--                    end
+--                end
+--            end
+--        end
+--    end
+--end
+--    local RBXVoiceChat = CurentGame:addSection("Voice Chat")
+--    local VoiceChat = game:GetService("VoiceChatInternal");
+--    vc_enabled = true
+--    RBXVoiceChat:addKeybind("Toggle Keybind", nil, function()
+--        vc_enabled = (not vc_enabled);
+--        VoiceChat:PublishPause(vc_enabled);
+--        if vc_enabled == false then 
+--            BubbleChatPath.ImageColor3 = Color3.new(255,255,255)
+--        elseif vc_enabled == true then
+--            BubbleChatPath.ImageColor3 = Color3.new(255,0,0)
+--        end
+--    end)
+--end
 
 -- 🏀 BeABall 🏀 --
 CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(10024974394).Name, function()
@@ -274,9 +274,6 @@ if game.PlaceId == 10024974394 then
         game.ReplicatedStorage.remotes.spawn:Fire()
         wait()
         end
-    end)
-    BeABallCoin:addButton("ClickBefore", function()
-    game:GetService("Workspace").coins.Highlight:Destroy()
     end)
     
     
@@ -1944,6 +1941,7 @@ end
 if game.Players.LocalPlayer.UserId == 1025947173 then -- DeveloperAcces --
     local SpyHubDeveloper = venyx:addPage("Developer", 5012544693)
     local SpyHubDeveloperPlace = SpyHubDeveloper:addSection("Place R6/R15")
+    local SpyHubDeveloperUI = SpyHubDeveloper:addSection("UI")
     
     SpyHubDeveloperPlace:addButton("R6 Place", function()
     local tpservice= game:GetService("TeleportService")
@@ -1958,6 +1956,17 @@ if game.Players.LocalPlayer.UserId == 1025947173 then -- DeveloperAcces --
 
     tpservice:Teleport(4820497506, plr)
     end)
+    
+    SpyHubDeveloperUI:addToggle("RaimbowUI", false, function(RaimbowGuiGlow)
+    while RaimbowGuiGlow == true do
+    wait()
+local themes = {
+Glow = Color3.fromHSV(tick() % 20/20, 1, 1)
+}
+    end
+
+    end)
+    
 end
 
 venyx:SelectPage(venyx.pages[1], true)
