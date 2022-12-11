@@ -692,7 +692,7 @@ if game.PlaceId == 9984770240 then -- 💦 ObbyBall 💦 --
 end
 
 -- 💡 Skin 💡 --
-AvatarSectionTools:addDropdown("SkinThing", {"GetTall(R15)", "GetSmall(R15)", "HeadLess(R15)", "SkinTools(R15)", "Emote(R15)", "HatsPet(R15)", "HatsSpin(R15)", "BallRoll(R15)", "Walkable Hat(R15)", "Snake(R15/R6)", "Neko Anims(R15)", "Universal Hat(R6)"}, function(SelectedSkinChange)
+AvatarSectionTools:addDropdown("SkinThing", {"GetTall(R15)", "HeadLess(R15)", "GiantHead(R15)", "SkinTools(R15)", "Emote(R15)", "HatsPet(R15)", "HatsSpin(R15)", "BallRoll(R15)", "Walkable Hat(R15)", "Snake(R15/R6)", "Neko Anims(R15)", "Universal Hat(R6)"}, function(SelectedSkinChange)
     _G.SelectedSkinChange = SelectedSkinChange
 end)
 
@@ -759,9 +759,17 @@ elseif _G.SelectedSkinChange == "Neko Anims(R15)" then
 elseif _G.SelectedSkinChange == "HeadLess(R15)" then
     venyx:Notify("HeadLess(R15)", "Remove all your Hat")
     loadstring(game:HttpGet(('https://pastebin.com/raw/xjumaZB7'),true))()
-elseif _G.SelectedSkinChange == "GetSmall(R15)" then
-    venyx:Notify("GetSmall(R15)", "Scale - Height 90%, Width 70%, Head 95%, Proportions 0% ")
-    loadstring(game:HttpGet(('https://pastebin.com/raw/zf42ED7Q'),true))()
+elseif _G.SelectedSkinChange == "GiantHead(R15)" then
+    venyx:Notify("GiantHead(R15)", "Use rthro head")
+for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetChildren()) do
+   if string.find(v.Name,"Scale") and v.Name ~= "HeadScale" then
+       repeat wait(HeadGrowSpeed) until game.Players.LocalPlayer.Character.Head:FindFirstChild("OriginalSize")
+       game.Players.LocalPlayer.Character.Head.OriginalSize:Destroy()
+       v:Destroy()
+       game.Players.LocalPlayer.Character.Head:WaitForChild("OriginalSize")
+   end
+end
+
 end
 end)
 
