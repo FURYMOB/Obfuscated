@@ -692,7 +692,7 @@ if game.PlaceId == 9984770240 then -- 💦 ObbyBall 💦 --
 end
 
 -- 💡 Skin 💡 --
-AvatarSectionTools:addDropdown("SkinThing", {"GetTall(R15)", "HeadLess(R15)", "GiantHead(R15)", "SkinTools(R15)", "Emote(R15)", "HatsPet(R15)", "HatsSpin(R15)", "BallRoll(R15)", "Walkable Hat(R15)", "Snake(R15/R6)", "Neko Anims(R15)", "Universal Hat(R6)"}, function(SelectedSkinChange)
+AvatarSectionTools:addDropdown("SkinThing", {"GetTall(R15)", "GetSmall(R15)", "HeadLess(R15)", "GiantHead(R15)", "SkinTools(R15)", "Emote(R15)", "HatsPet(R15)", "HatsSpin(R15)", "BallRoll(R15)", "Walkable Hat(R15)", "Snake(R15/R6)", "Neko Anims(R15)", "Universal Hat(R6)"}, function(SelectedSkinChange)
     _G.SelectedSkinChange = SelectedSkinChange
 end)
 
@@ -754,6 +754,9 @@ elseif _G.SelectedSkinChange == "Snake(R15/R6)" then
 elseif _G.SelectedSkinChange == "GetTall(R15)" then
     venyx:Notify("GetTall(R15)", "Scale - Height 105%, Width 100%, Head 100%, Proportions 0% ")
     loadstring(game:HttpGet(('https://pastebin.com/raw/0KRjvLb9'),true))()
+elseif _G.SelectedSkinChange == "GetTall(R15)" then
+    venyx:Notify("GetSmall(R15)", "Scale - Height 90%, Width 70%, Head 95%, Proportions 0% ")
+    loadstring(game:HttpGet(('https://pastebin.com/raw/zf42ED7Q'),true))()
 elseif _G.SelectedSkinChange == "Neko Anims(R15)" then
     loadstring(game:HttpGet(('https://pastebin.com/raw/r0UBKWws'),true))()
 elseif _G.SelectedSkinChange == "HeadLess(R15)" then
