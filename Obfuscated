@@ -21,7 +21,7 @@ end)
 
 -- 🛠 Loader 🛠 --
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
-local venyx = library.new("SpyHub", 10292846770)
+local venyx = library.new("SpyHub", 11582433255)
 wait(0.1)
 --loadstring(game:HttpGet("https://pastebin.com/raw/4XKEDbAs"))()
 
@@ -346,6 +346,13 @@ if game.PlaceId == 537413528 then
             end)
         end)
     end)
+    _G.Busy = false
+    BuildABoatTools:addToggle("AutoFarm", false, function(AutoFarmBDB)
+        _G.Busy = AutoFarmBDB
+        if _G.Busy == true then
+            loadstring(game:HttpGet("https://pastebin.com/raw/r1Ue47AV"))()
+        end
+    end)
 end
 
 -- 💦 BuildABoat Event All 🏀 --
@@ -568,7 +575,7 @@ VisualSectionHitBox:addButton("HitBox Expander", function()
 end)
 
 -- ⛏ Inventory ⛏ --
-PlayerSectionInventory:addDropdown("Select Tool", {"Click Teleport", "Telekinesis", "Portal Gun"}, function(PlayerSelectTool)
+PlayerSectionInventory:addDropdown("Select Tool", {"Click Teleport", "Telekinesis"}, function(PlayerSelectTool)
     _G.PlayerSelectTool = PlayerSelectTool
 end)
 
@@ -589,11 +596,6 @@ PlayerSectionInventory:addButton("Give Tool", function()
     elseif _G.PlayerSelectTool == "Telekinesis" then
         
         loadstring(game:HttpGet("https://pastebin.com/raw/B6LTCMj5"))()
-    
-    elseif _G.PlayerSelectTool == "Portal Gun" then
-        
-        loadstring(game:HttpGet("https://pastebin.com/raw/LMUTnESQ"))()
-        
     end
 end)
 
