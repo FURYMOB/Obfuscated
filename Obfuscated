@@ -756,7 +756,7 @@ elseif _G.SelectedSkinChange == "Snake(R15/R6)" then
 elseif _G.SelectedSkinChange == "GetTall(R15)" then
     venyx:Notify("GetTall(R15)", "Scale - Height 105%, Width 100%, Head 100%, Proportions 0% ")
     loadstring(game:HttpGet(('https://pastebin.com/raw/0KRjvLb9'),true))()
-elseif _G.SelectedSkinChange == "GetTall(R15)" then
+elseif _G.SelectedSkinChange == "GetSmall(R15)" then
     venyx:Notify("GetSmall(R15)", "Scale - Height 90%, Width 70%, Head 95%, Proportions 0% ")
     loadstring(game:HttpGet(('https://pastebin.com/raw/zf42ED7Q'),true))()
 elseif _G.SelectedSkinChange == "Neko Anims(R15)" then
