@@ -22,7 +22,7 @@ end)
 -- 🛠 Loader 🛠 --
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
 local venyx = library.new("SpyHub", 11582433255)
-game:GetService("CoreGui").SpyHub.Enabled = false
+--game:GetService("CoreGui").SpyHub.Enabled = false
 --loadstring(game:HttpGet("https://pastebin.com/raw/4XKEDbAs"))()
 
 for i,v in pairs(game.Players:GetPlayers()) do
@@ -1997,4 +1997,4 @@ Glow = Color3.fromHSV(tick() % 20/20, 1, 1)
 end
 
 venyx:SelectPage(venyx.pages[1], true)
-game:GetService("CoreGui").SpyHub.Enabled = true
+--game:GetService("CoreGui").SpyHub.Enabled = true
