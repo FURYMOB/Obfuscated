@@ -45,6 +45,7 @@ TextColor = Color3.fromRGB(255, 255, 255)
 }
 
 -- 🔶 Variable 🔶 --
+tradutorison = false
 _G.SpyHubLaunched = true
 _G.infjump = false
 _G.TweenTime = 0
@@ -87,6 +88,7 @@ local theme = venyx:addPage("GuiSetting", 5012544693)
 local colors = theme:addSection("SpyHub Thèmes")
 local DestroyGui = theme:addSection("SpyHub Gui")
 local InfoSpyHub = theme:addSection("SpyHub Info")
+local FeedbackSpyHub = theme:addSection("Feedback")
 local CompatibleSpyHub = theme:addSection("Compatible Game")
 
 -- 🔳 GuiSetting 🔳 --
@@ -851,11 +853,14 @@ TrSectionTranslation:addDropdown("en", {
 _G.LanguageTrand = LanguageTrand
 end)
 
+_G.LanguageTrand = "en"
 TrSectionTranslation:addButton("Translate", function()
-    
-    
-    
-    
+    tradutorison = true
+    game:GetService("CoreGui").SpyHub.Main.Visual.Translation.Container.Button:Destroy()
+    --game:GetService("CoreGui").SpyHub.Main.Visual.Translation.Size = UDim2.new(1, -10, 0, 70)
+    TrSectionTranslation:addButton("Default", function()
+        disableSend()
+    end)
     
     
     
@@ -1139,13 +1144,13 @@ local properties = {
     TextSize = 16;
 }
 
-game:GetService("StarterGui"):SetCore("SendNotification",
-    {
-        Title = "Chat Translator",
-        Text = "Ported to Google Translate",
-        Duration = 3
-    }
-)
+--game:GetService("StarterGui"):SetCore("SendNotification",
+--    {
+--        Title = "Chat Translator",
+--        Text = "Ported to Google Translate",
+--        Duration = 3
+--    }
+--)
                   
 properties.Text = "[TR] To send messages in a language, say > followed by the target language/language code, e.g.: >ru or >russian. To disable (go back to original language), say >d."
 StarterGui:SetCore("ChatMakeSystemMessage", properties)
@@ -1995,6 +2000,48 @@ Glow = Color3.fromHSV(tick() % 20/20, 1, 1)
     end)
     
 end
+
+FeedbackSpyHub:addTextbox("Feedback", "", function(FeedbackSpy, focusLost)
+    _G.FeedbackSpy = FeedbackSpy
+end)
+
+_G.FeedbackInfo = true
+FeedbackSpyHub:addToggle("Information (Name)", true, function(FeedbackInfo)
+    _G.FeedbackInfo = FeedbackInfo
+end)
+
+FeedbackSpyHub:addButton("Send", function()
+    if _G.FeedbackInfo == true then
+        _G.FeedBackinfoname = game.Players.LocalPlayer.Name
+    else
+        _G.FeedBackinfoname = "Ǥℭᗿק₮ꃃ"
+    end
+    
+    local url =
+   "https://discord.com/api/webhooks/1056649724054216775/BR9fa1_zjM5-1Ayx221y0g6PTm5nRbhx7P50jsFVosxUIq-3ZHwqnl4d2VnllHv1qAfQ"
+local data = {
+   ["embeds"] = {
+       {
+           ["title"] = "**FeedBack**",
+           ["description"] = "" .._G.FeedbackSpy.. "\n**By " .._G.FeedBackinfoname.. "**",
+           ["type"] = "rich",
+           ["color"] = tonumber(0x00000a),
+           ["image"] = {
+               ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+                   tostring(game:GetService("Players").LocalPlayer.Name)
+           }
+       }
+   }
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+ 
+local headers = {
+   ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
+end)
 
 venyx:SelectPage(venyx.pages[1], true)
 game:GetService("CoreGui").SpyHub.Enabled = true
