@@ -2018,7 +2018,7 @@ FeedbackSpyHub:addButton("Send", function()
     end
     
     local url =
-   "https://discord.com/api/webhooks/1056649724054216775/BR9fa1_zjM5-1Ayx221y0g6PTm5nRbhx7P50jsFVosxUIq-3ZHwqnl4d2VnllHv1qAfQ"
+   "URL"
 local data = {
    ["embeds"] = {
        {
