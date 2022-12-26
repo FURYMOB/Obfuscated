@@ -264,6 +264,9 @@ if game.PlaceId == 10024974394 then
         while _G.AutoCoinCollectBeABall == true do
         for i,v in pairs(Source:GetChildren()) do
             if (v:IsA("Part")) then
+                if _G.AutoCoinCollectBeABall == false then
+                    return
+                end
                 local CFrameEnd = CFrame.new(v.Position) -- Place your coords in here
                 local Time = TweenTime -- Time in seconds
                 local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.Marble, TweenInfo.new(Time), {CFrame = CFrameEnd})
