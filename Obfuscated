@@ -2093,30 +2093,42 @@ getgenv().wait = task.wait
 
 
 
-    TogglesDanceValue = true
-    SoundSpaceDance:addToggle("Cursor Dance", true)
+    _G.TogglesDanceValue = false
+    SoundSpaceDance:addToggle("Cursor Dance", false, function(TogglesDanceValue)
+        _G.TogglesDanceValue = TogglesDanceValue
+    end)
     
-    TogglesDanceBouncesValue = true
-    SoundSpaceDance:addToggle("Dance Bounces", true)
+    _G.TogglesDanceBouncesValue = true
+    SoundSpaceDance:addToggle("Dance Bounces", true, function(TogglesDanceBouncesValue)
+        _G.TogglesDanceBouncesValue = TogglesDanceBouncesValue
+    end)
     
-    OptionsDanceModeValue = "Linear"
+    _G.OptionsDanceModeValue = "Half-Circle"
     SoundSpaceDance:addDropdown("Half-Circle", {
         "Linear",
         "Half-Circle",
         "Circle"
-    })
-    OptionsDanceRadiusValue = 1
-    SoundSpaceDance:addSlider("Radius Multiplier", 1, 0, 2)
+    }, function(OptionsDanceModeValue)
+        _G.OptionsDanceModeValue = OptionsDanceModeValue
+    end)
+    _G.OptionsDanceRadiusValue = 1
+    SoundSpaceDance:addSlider("Radius Multiplier", 1, 0, 2, function(OptionsDanceRadiusValue)
+        _G.OptionsDanceRadiusValue = OptionsDanceRadiusValue
+    end)
     
-    OptionsDanceCrossesValue = 0
-    SoundSpaceDance:addSlider("Crossovers", 0, 0, 5)
+    _G.OptionsDanceCrossesValue = 0
+    SoundSpaceDance:addSlider("Crossovers", 0, 0, 5, function(OptionsDanceCrossesValue)
+        _G.OptionsDanceCrossesValue = OptionsDanceCrossesValue
+    end)
     
-    OptionsDanceDirValue = "CW"
+    _G.OptionsDanceDirValue = "CW"
     SoundSpaceDance:addDropdown("CW", {
 		"CW",
 		"CCW",
 		"Alternate"
-    })
+    }, function(OptionsDanceDirValue)
+        _G.OptionsDanceDirValue = OptionsDanceDirValue
+    end)
 
 		local lastStop
 		local altDirection = false
@@ -2139,7 +2151,7 @@ getgenv().wait = task.wait
     		return position
 		end
 		local function ellipse(startPos,stopPos,diff,crosses,radius)
-			local direction = OptionsDanceDirValue == "CW" or (OptionsDanceDirValue == "Alternate" and altDirection)
+			local direction = _G.OptionsDanceDirValue == "CW" or (_G.OptionsDanceDirValue == "Alternate" and altDirection)
 			local look = stopPos - startPos
 			local mid = (startPos + stopPos) / 2
 			local up = (Vector2.new(-look.Y, look.X) / 2) * radius
@@ -2153,14 +2165,14 @@ getgenv().wait = task.wait
 			return p
 		end
 		local function halfcircle(startPos,stopPos,diff,crosses)
-			return ellipse(startPos,stopPos,diff,crosses,OptionsDanceRadiusValue)
+			return ellipse(startPos,stopPos,diff,crosses,_G.OptionsDanceRadiusValue)
 		end
 		local function circle(startPos,stopPos,diff)
-			return halfcircle(startPos,stopPos,diff*3*(OptionsDanceCrossesValue+1),1)
+			return halfcircle(startPos,stopPos,diff*3*(_G.OptionsDanceCrossesValue+1),1)
 		end
 		local trailDelay = 0
 		runS.RenderStepped:Connect(function(delta)
-			if TogglesDanceValue and renv._G.IsRunning then
+			if _G.TogglesDanceValue and renv._G.IsRunning then
 				currentMap = debug.getupvalue(UpdateCubes,9)
 				local visibleMap = debug.getupvalue(UpdateCubes,17)
 				local time = music.TimePosition - (debug.getupvalue(UpdateCubes,3)+55)/1000
@@ -2199,16 +2211,16 @@ getgenv().wait = task.wait
 				local stopPos = Vector2.new(stop.Z,stop.Y)*0.95
 				local pos = stopPos
 				if start and stop then
-					if OptionsDanceModeValue == "Linear" then -- linear dance
+					if _G.OptionsDanceModeValue == "Linear" then -- linear dance
 						pos = startPos:Lerp(stopPos,diff)
-					elseif OptionsDanceModeValue == "Circle" then -- full circle dance
+					elseif _G.OptionsDanceModeValue == "Circle" then -- full circle dance
 						pos = circle(startPos,stopPos,diff)
-					elseif OptionsDanceModeValue == "Half-Circle" then -- half circle dance
-						pos = halfcircle(startPos,stopPos,diff,OptionsDanceCrossesValue+1)
+					elseif _G.OptionsDanceModeValue == "Half-Circle" then -- half circle dance
+						pos = halfcircle(startPos,stopPos,diff,_G.OptionsDanceCrossesValue+1)
 					end
 				end
 				pos = Vector2.new(pos.X*2-2,pos.Y*2+1)
-				if TogglesDanceBouncesValue then
+				if _G.TogglesDanceBouncesValue then
 					pos = bounceCheck(pos)
 				end
 				moveCursor(pos)
