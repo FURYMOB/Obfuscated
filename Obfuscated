@@ -1,7 +1,7 @@
 local DiscordLink = "https://discord.com/invite/GgtEkU77WD"
 local TikTokLink = "https://www.tiktok.com/@spyhub.rbx"
 
-loadstring(game:HttpGet("https://pastebin.com/raw/3YS6BStT"))()
+--loadstring(game:HttpGet("https://pastebin.com/raw/3YS6BStT"))()
 --local IntValue = Instance.new("IntValue")
 -- PlayerInGame
 --local getallplayers = ""
@@ -2099,7 +2099,7 @@ getgenv().wait = task.wait
     TogglesDanceBouncesValue = true
     SoundSpaceDance:addToggle("Dance Bounces", true)
     
-    OptionsDanceModeValue = "Half-Circle"
+    OptionsDanceModeValue = "Linear"
     SoundSpaceDance:addDropdown("Half-Circle", {
         "Linear",
         "Half-Circle",
