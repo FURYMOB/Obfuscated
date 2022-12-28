@@ -2099,7 +2099,7 @@ getgenv().wait = task.wait
     TogglesDanceBouncesValue = true
     SoundSpaceDance:addToggle("Dance Bounces", true)
     
-    OptionsDanceModeValue = "Linear"
+    OptionsDanceModeValue = "Half-Circle"
     SoundSpaceDance:addDropdown("Half-Circle", {
         "Linear",
         "Half-Circle",
