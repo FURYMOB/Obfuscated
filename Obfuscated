@@ -688,17 +688,6 @@ PlayerSectionInventoryToolsBreak:addToggle("DupeTools", false, function(GameCras
     end
 end)
 
--- 🌳 NaturalDisaster 🌳 --
-CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(189707).Name, function()
-    game:GetService('TeleportService'):Teleport(189707)
-end)
-if game.PlaceId == 189707 then
-    local NaturalDisasterMain = CurentGame:addSection("Main")
-    NaturalDisasterMain:addToggle("NoFallDamage🛠", false, function(NoFallDamageNatural)
-        game.Players.LocalPlayer.Character.FallDamageScript:Destroy()
-    end)
-end
-
 if game.PlaceId == 9984770240 then -- 💦 ObbyBall 💦 --
     local ObbyBall = CurentGame:addSection("Checkpoints")
     
@@ -2046,6 +2035,190 @@ request = http_request or request or HttpPost or syn.request
 local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
 request(abcdef)
 end)
+
+-- 🟪 SoundSpace 🟪 --
+CompatibleSpyHub:addButton(game:GetService("MarketplaceService"):GetProductInfo(2677609345).Name, function()
+    game:GetService('TeleportService'):Teleport(2677609345)
+end)
+if game.PlaceId == 2677609345 then
+    local SoundSpaceDance = CurentGame:addSection("SoundSpace Dance")
+    
+-- services
+local runS = game:GetService("RunService")
+local repF = game:GetService("ReplicatedFirst")
+local repS = game:GetService("ReplicatedStorage")
+local tweS = game:GetService("TweenService")
+local inpS = game:GetService("UserInputService")
+local players = game:GetService("Players")
+
+getgenv().wait = task.wait
+
+	local player = players.LocalPlayer
+	local renv = getrenv()
+
+	local gameScript = getsenv(repF.GameScript)
+	local gameScriptR = require(repF.GameScript)
+	local music = repF.GameScript:WaitForChild("Music")
+
+	local currentMap = nil
+
+	local playerModule = require(repF.Modules.Data.Player)
+	local playerData = playerModule:GetData()
+
+	local permissionsModule = require(repS.Modules.Perms.Permissions)
+
+	local UpdateCubes,UpdateSaber
+
+	-- Hooks
+		UpdateCubes = gameScript.UpdateCubes
+		UpdateSaber = gameScript.UpdateSaber
+		local lastUpdate = tick()
+		runS.Heartbeat:Connect(function()
+			if tick()-lastUpdate > 10 then
+				lastUpdate = tick()
+				playerData = playerModule:GetData()
+			end
+		end)
+	
+	local modInfo = require(game.ReplicatedStorage.Modules.Util.Mod)
+	local cursor = workspace.Client:WaitForChild("Cursor")
+
+	local function getCursor()
+		local pos = debug.getupvalue(UpdateSaber,5)
+		return Vector2.new(pos.Z,pos.Y)
+	end
+	local function moveCursor(vec2)
+		debug.setupvalue(UpdateSaber,5,Vector3.new(0.05,vec2.Y,vec2.X))
+	end
+
+
+
+    TogglesDanceValue = true
+    SoundSpaceDance:addToggle("Cursor Dance", true)
+    
+    TogglesDanceBouncesValue = true
+    SoundSpaceDance:addToggle("Dance Bounces", true)
+    
+    OptionsDanceModeValue = "Half-Circle"
+    SoundSpaceDance:addDropdown("Half-Circle", {
+        "Linear",
+        "Half-Circle",
+        "Circle"
+    })
+    OptionsDanceRadiusValue = 1
+    SoundSpaceDance:addSlider("Radius Multiplier", 1, 0, 2)
+    
+    OptionsDanceCrossesValue = 0
+    SoundSpaceDance:addSlider("Crossovers", 0, 0, 5)
+    
+    OptionsDanceDirValue = "CW"
+    SoundSpaceDance:addDropdown("CW", {
+		"CW",
+		"CCW",
+		"Alternate"
+    })
+
+		local lastStop
+		local altDirection = false
+		local function bounceCheck(position)
+		    local clamp = 3 - (0.525 / 2)
+			position = Vector2.new(position.X,position.Y-3)
+    		while math.abs(position.X) > clamp or math.abs(position.Y) > clamp do
+    			if position.X > clamp then
+    				position = Vector2.new(clamp - (position.X - clamp),position.Y)
+    			elseif position.X < -clamp then
+    				position = Vector2.new(-clamp + (-position.X - clamp),position.Y)
+    			end
+    			if position.Y > clamp then
+    				position = Vector2.new(position.X,clamp - (position.Y - clamp))
+    			elseif position.Y < -clamp then
+    				position = Vector2.new(position.X,-clamp + (-position.Y - clamp))
+    			end
+    		end
+			position = Vector2.new(position.X,position.Y+3)
+    		return position
+		end
+		local function ellipse(startPos,stopPos,diff,crosses,radius)
+			local direction = OptionsDanceDirValue == "CW" or (OptionsDanceDirValue == "Alternate" and altDirection)
+			local look = stopPos - startPos
+			local mid = (startPos + stopPos) / 2
+			local up = (Vector2.new(-look.Y, look.X) / 2) * radius
+			if direction then
+				up = -up
+			end
+			local p = mid + look * -math.cos(diff * math.pi) / 2
+			if crosses > 0 then
+				p += up * math.sin(diff * math.pi * crosses) / crosses
+			end
+			return p
+		end
+		local function halfcircle(startPos,stopPos,diff,crosses)
+			return ellipse(startPos,stopPos,diff,crosses,OptionsDanceRadiusValue)
+		end
+		local function circle(startPos,stopPos,diff)
+			return halfcircle(startPos,stopPos,diff*3*(OptionsDanceCrossesValue+1),1)
+		end
+		local trailDelay = 0
+		runS.RenderStepped:Connect(function(delta)
+			if TogglesDanceValue and renv._G.IsRunning then
+				currentMap = debug.getupvalue(UpdateCubes,9)
+				local visibleMap = debug.getupvalue(UpdateCubes,17)
+				local time = music.TimePosition - (debug.getupvalue(UpdateCubes,3)+55)/1000
+				local start = {Z=1,Y=1,Time=-1000}
+				local stop
+				local startIdx,stopIdx = 1,1
+				local visibleStop,distance
+				for cube,data in pairs(visibleMap) do
+					if visibleStop == nil or cube.Position.X > distance then
+						visibleStop = data.MapCube
+						distance = cube.Position.X
+					end
+				end
+				for index,beat in pairs(currentMap) do
+					if not visibleStop then
+						if beat.Time > time and (stop == nil or (beat.Time < stop.Time)) then
+							stop = beat
+							stopIdx = index
+							start = currentMap[index-1] or start
+							startIdx = index-1
+						end
+					elseif visibleStop == beat then
+						start = currentMap[index-1] or start
+						startIdx = index-1
+						stop = visibleStop
+						stopIdx = index
+					end
+				end
+				if stop ~= lastStop then
+					altDirection = not altDirection
+				end
+				lastStop = stop
+				local startT = start.Time
+				local diff = math.clamp((time-startT)/(stop.Time-startT),0,1)
+				local startPos = Vector2.new(start.Z,start.Y)*0.95
+				local stopPos = Vector2.new(stop.Z,stop.Y)*0.95
+				local pos = stopPos
+				if start and stop then
+					if OptionsDanceModeValue == "Linear" then -- linear dance
+						pos = startPos:Lerp(stopPos,diff)
+					elseif OptionsDanceModeValue == "Circle" then -- full circle dance
+						pos = circle(startPos,stopPos,diff)
+					elseif OptionsDanceModeValue == "Half-Circle" then -- half circle dance
+						pos = halfcircle(startPos,stopPos,diff,OptionsDanceCrossesValue+1)
+					end
+				end
+				pos = Vector2.new(pos.X*2-2,pos.Y*2+1)
+				if TogglesDanceBouncesValue then
+					pos = bounceCheck(pos)
+				end
+				moveCursor(pos)
+				cursor.CFrame = CFrame.new(0.05,pos.Y,pos.X)
+			end
+		end)
+
+
+    
+end
 
 venyx:SelectPage(venyx.pages[1], true)
 game:GetService("CoreGui").SpyHub.Enabled = true
